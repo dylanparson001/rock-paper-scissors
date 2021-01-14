@@ -31,8 +31,8 @@ function rockPaperScissors(){
         else if (playerWins > computerWins){ // if the player had more wins total
             console.log("You win!");
         }
-
-}
+        
+}   
 //Gets random choice for computer
 function computerChoice(){
     let choice = Math.floor(Math.random() * 3) + 1;
