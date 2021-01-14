@@ -1,20 +1,39 @@
-const rock = 1;
-const paper = 2;
-const scissors = 3;
-let playerChoice ;
-let computer;
-let winner;
- 
-for (let i = 0; i < 5; i++){ // plays the game 5 times, will make this a function with the game inside
-    console.log(i);
-    playerChoice = gameChoice(); // gets user input
-    computer = computerChoice(); // gets random number 1-3 and converts it to a string
-    winner = gameDecision(playerChoice, computer);
+rockPaperScissors();
+
+// Full rock paper scissors game
+function rockPaperScissors(){
+    const rock = 1;
+    const paper = 2;
+    const scissors = 3;
+    let playerChoice ;
+    let computer;
+    let winner;
+    let playerWins = 0;
+    let computerWins = 0;
+
+    for (let i = 0; i < 5; i++){ // plays the game 5 times
+        playerChoice = gameChoice(); // gets user input
+        computer = computerChoice(); // gets random number 1-3 and converts it to a string
+        winner = gameDecision(playerChoice, computer); // decides winner
+
+        if(winner === 1){
+            playerWins++; // keeps track of amount of wins for the user
+        }
+        else if (winner === 2)
+            computerWins++; // keeps track of amount of wins for the computer
+        }
+        console.log("Player has won " + playerWins + " times");
+        console.log("Computer has won " + computerWins + " times");
+
+        if (computerWins > playerWins){ // if the computer had more wins total
+            console.log("Computer wins!");
+        }
+        else if (playerWins > computerWins){ // if the player had more wins total
+            console.log("You win!");
+        }
 
 }
-
-//Functions for tic tac toe game
-// gets random choice from computer
+//Gets random choice for computer
 function computerChoice(){
     let choice = Math.floor(Math.random() * 3) + 1;
     if (choice === 1){
@@ -37,14 +56,6 @@ function gameChoice(){
     return choice;
 }
 
-//converts computer choice to string
-/* I would like to make a number option that the user chooses from to avoid
-typing and spelling errors but the specs wanted the user to be able to put lowercase or uppercase
-So i took that as comparing strings instead of numbers */
-
-function convertComputerChoice(choice){
-   
-}
 //decides whether computer or player wins
 function gameDecision(playerChoice, computerChoice){
     if (playerChoice === computerChoice){
