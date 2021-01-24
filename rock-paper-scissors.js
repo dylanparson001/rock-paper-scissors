@@ -1,20 +1,28 @@
+let playerWins = 0;
+let computerWins = 0;
+let finalWinner;
+
+
 //event listener for clicking rock button
 const rock = document.querySelector("#rock"); // selects rock id
     rock.addEventListener("click", () => { // event listener 
     let choice = "rock";
     rockPaperScissors(choice);
+    
 })
 
 const paper = document.querySelector("#paper");
     paper.addEventListener("click", () => {
     let choice = "paper";
     rockPaperScissors(choice);
+
 })
 
 const scissors = document.querySelector("#scissors");
     scissors.addEventListener("click", () => {
     let choice = "scissors";
     rockPaperScissors(choice);
+
 })
 
 
@@ -30,14 +38,15 @@ let playerWin = () =>{
     const results = document.querySelector(".results"); 
     const player = document.createElement('h3');
     player.textContent = "You win!";
-    results.appendChild(player)
+    results.appendChild(player);
+    
 }
 
 let computerWin = () => {
     const results = document.querySelector(".results"); 
     const computer = document.createElement('h3');
     computer.textContent = "Computer wins!";
-    results.appendChild(computer)
+    results.appendChild(computer);
 }
 
 
@@ -48,16 +57,6 @@ function rockPaperScissors(choice){
     const scissors = 3;
     let computer;
     let winner;
-    let playerWins = 0;
-    let computerWins = 0;
-
-    const score = document.querySelector(".score");
-    /*const playerScore = score.createElement('h1');
-    const computerScore = score.createElement("h1");
-    playerScore.textContent = "Player score: " + playerWins;
-    computerScore.textContent = "Computer score: " + computerWins;
-    score.appendChild(playerScore);
-    score.appendChild(computerScore);*/
 
     computer = computerChoice(); // gets random number 1-3 and converts it to a string
     winner = gameDecision(choice, computer); // decides winner
@@ -65,12 +64,18 @@ function rockPaperScissors(choice){
     if(winner === 1){
         playerWins++; // keeps track of amount of wins for the user
     }
-    else if (winner === 2){
+    if (winner === 2){
         computerWins++; // keeps track of amount of wins for the computer
-    }
+    }   
+    const score = document.querySelector(".results");
+    const playerScore = document.createElement('h3');
+    const computerScore = document.createElement("h3");
+    playerScore.textContent = "Player score: " + playerWins;
+    computerScore.textContent = "Computer score: " + computerWins;
+    score.appendChild(playerScore);
+    score.appendChild(computerScore);
     
-    
-        
+
 }   
 //Gets random choice for computer
 function computerChoice(){
@@ -85,7 +90,6 @@ function computerChoice(){
     else {
         choice = "paper";
     }
-    console.log("The computer chose " + choice);
     const comChoice = document.querySelector(".results");
     const displayResult = document.createElement('h3');
     displayResult.textContent = "The computer chose " + choice;
@@ -122,9 +126,25 @@ function gameDecision(playerChoice, computerChoice){
         computerWin();
         return 2;
     }
-    if (playerChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "rock"){
+    if (playerChoice === "paper" && computerChoice === "rock"){
         playerWin();
         return 1;
     }
     
 }
+/*  
+let playerWins = 0;
+    let computerWins = 0;
+if(winner === 1){
+        playerWins++; // keeps track of amount of wins for the user
+    }
+    if (winner === 2){
+        computerWins++; // keeps track of amount of wins for the computer
+    }
+const score = document.querySelector(".score");
+const playerScore = document.createElement('h3');
+const computerScore = document.createElement("h3");
+playerScore.textContent = "Player score: " + playerWins;
+computerScore.textContent = "Computer score: " + computerWins;
+score.appendChild(playerScore);
+score.appendChild(computerScore);*/
